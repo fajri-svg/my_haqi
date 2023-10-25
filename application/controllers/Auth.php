@@ -47,6 +47,8 @@ class Auth extends CI_Controller
                         redirect('admin');
                     } else if ($user['role_id'] == 2) {
                         redirect('user');
+                    } elseif ($user['role_id'] == 3) {
+                        redirect('operator');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert 
