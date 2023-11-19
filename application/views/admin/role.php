@@ -12,7 +12,7 @@
             <?= $this->session->flashdata('message'); ?>
 
 
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Add Menu</a>
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Role</a>
 
             <table class="table table-hover">
                 <thead>
@@ -24,25 +24,22 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($menu as $m) : ?>
+                    <?php foreach ($role as $r) : ?>
                         <tr>
                             <th scope="row"><?= $i ?>
                             </th>
-                            <td><?= $m['menu'] ?>
+                            <td><?= $r['role'] ?>
                             </td>
                             <td>
+                                <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">access</a>
                                 <a href="" class="badge badge-success">edit</a>
                                 <a href="" class="badge badge-danger">delete</a>
                             </td>
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach ?>
-
-
                 </tbody>
             </table>
-
-
         </div>
 
     </div>
@@ -55,19 +52,19 @@
 <!-- End of Main Content -->
 
 <!-- Modal -->
-<div class="modal fade" id="newMenuModal" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">
+<div class="modal fade" id="newRoleModal" tabindex="-1" role="dialog" aria-labelledby="newRoleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newMenuModalLabel">Add New Menu</h5>
+                <h5 class="modal-title" id="newRoleModalLabel">Add New Role</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu') ?>" method="post">
+            <form action="<?= base_url('admin/role') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu name...">
+                        <input type="text" class="form-control" id="role" name="role" placeholder="Role name...">
                     </div>
                 </div>
                 <div class="modal-footer">

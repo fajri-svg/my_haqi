@@ -53,4 +53,6 @@
     e.preventDefault();
   });
 
+  require('../../js/dropdown.js')
+
 })(jQuery); // End of use strict
