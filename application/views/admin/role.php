@@ -6,7 +6,7 @@
 
     <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg">
             <?= form_error('menu', '<div class="alert 
                 alert-danger" role="alert">', '</div>') ?>
             <?= $this->session->flashdata('message'); ?>
@@ -14,7 +14,7 @@
 
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Role</a>
 
-            <table class="table table-hover">
+            <!-- <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -39,7 +39,53 @@
                         <?php $i++; ?>
                     <?php endforeach ?>
                 </tbody>
-            </table>
+            </table> -->
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Menu</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Menu</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($role as $r) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $i ?>
+                                        </th>
+                                        <td><?= $r['role'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="btn btn-warning btn-icon-split"><span class="icon text-white-50">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </span>
+                                                <span class="text">Access</span></a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

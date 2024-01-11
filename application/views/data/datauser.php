@@ -27,7 +27,7 @@
                                 <th>Email</th>
                                 <th>Position</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tfoot>
@@ -37,7 +37,7 @@
                                 <th>Email</th>
                                 <th>Position</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </tfoot>
                         <tbody>
@@ -47,11 +47,11 @@
                                     <td><?= $i ?></td>
                                     <td><?= $d['name']; ?></td>
                                     <td><?= $d['email']; ?></td>
-                                    <td><?= $d['role_id']; ?></td>
-                                    <td><?= $d['is_active']; ?></td>
-                                    <td> <a href="<?= base_url('#' . $d['id_user']); ?>" class="badge badge-success">Ubah</a>
+                                    <td><?= $d['role'] ?></td>
+                                    <td><?= $d['nama']; ?></td>
+                                    <!-- <td> <a href="<?= base_url('#' . $d['id_user']); ?>" class="badge badge-success">Ubah</a>
                                         <a href="<?= base_url('#' . $d['id_user']); ?>" class="badge badge-danger">Hapus</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <?php $i++; ?>
                             <?php endforeach; ?>

@@ -8,11 +8,15 @@ class Data extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Kriteria_model');
+        $this->load->model('Submenu_model');
     }
 
     public function index()
     {
-        $data['title'] = 'Data Kriteria';
+        $id_submenu = 3;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         // $data['role'] = $this->db->get('user_role')->result_array();
@@ -123,13 +127,27 @@ class Data extends CI_Controller
 
     public function dataUser()
     {
-        $data['title'] = 'Data User';
+        $id_submenu = 4;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         // $data['alternatif'] = $this->db->get('user')->result_array();
         // $data['role'] = $this->db->get('user_role')->result_array();
         $this->load->model('Alternatif_model');
         $data['alternatif'] = $this->Alternatif_model->getAlternatif();
+        // $data['status'] = $this->Alternatif_model->getStatus();
+        // print_r($data);
+        // die;
+
+        // $data['alternatif'] = $this->db->query("SELECT * FROM user a LEFT JOIN user_role b ON a.role_id = b.id;")->result_array();
+        // $data['role'] =     $this->db->select('b.role');
+        // $this->db->from('user a');
+        // $this->db->join('user_role b', 'a.role_id = b.id', 'left');
+        // $query = $this->db->get();
+        // $data['alternatif'] = $this->db->get_where('user_role', ['role' => $role])->row_array();
+        // $data['kriteria'] = $this->Alternatif_model->getAlternatif()($id);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

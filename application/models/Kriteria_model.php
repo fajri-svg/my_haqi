@@ -19,8 +19,8 @@ class Kriteria_model extends CI_Model
         $noUrut = (int) $nim;
         $noUrut++;
 
-        $char = "C";
-        $IDbaru = $char . $noUrut;
+
+        $IDbaru =  $noUrut;
 
         return $IDbaru;
     }
@@ -44,6 +44,7 @@ class Kriteria_model extends CI_Model
 
     public function deleteKriteria($id)
     {
+        $this->db->query("DELETE from nilai_matrik where id_kriteria = " . $id);
         $this->db->where('id_kriteria', $id);
         return $this->db->delete('kriteria');
     }

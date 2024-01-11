@@ -86,6 +86,24 @@
                                     <td>
                                         <a href="<?= base_url('data/ubahKriteria/' . $d['id_kriteria']); ?>" class="badge badge-success">Ubah</a>
                                         <a href="<?= base_url('data/deleteKriteria/' . $d['id_kriteria']); ?>" class="badge badge-danger">Hapus</a>
+                                        <!-- Delete Modal-->
+                                        <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">Select "Delete" below if you are ready to delete.</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                        <a class="btn btn-primary" href="<?= base_url('data/deleteKriteria/' . $d['id_kriteria']) ?>">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
                                         <!-- <a href="" class="badge badge-success">edit</a>
                                         <a href="" class="badge badge-danger">delete</a> -->
                                     </td>

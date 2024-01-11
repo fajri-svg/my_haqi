@@ -17,42 +17,79 @@
 
 
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubMenuModal">Add Submenu</a>
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Menu</th>
-                        <th scope="col">Url</th>
-                        <th scope="col">Icon</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($subMenu as $sm) : ?>
-                        <tr>
-                            <th scope="row"><?= $i ?>
-                            </th>
-                            <td><?= $sm['title'] ?>
-                            <td><?= $sm['menu'] ?>
-                            <td><?= $sm['url'] ?>
-                            <td><?= $sm['icon'] ?>
-                            <td><?= $sm['is_active'] ?>
-                            </td>
-                            <td>
-                                <a href="" class="badge badge-success">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
-                            </td>
-                        </tr>
-                        <?php $i++; ?>
-                    <?php endforeach ?>
-
-
-                </tbody>
-            </table>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Menu</th>
+                                    <th scope="col">Url</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Active</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Menu</th>
+                                    <th scope="col">Url</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Active</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($subMenu as $sm) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $i ?>
+                                        </th>
+                                        <td><?= $sm['title'] ?></td>
+                                        <td><?= $sm['menu'] ?></td>
+                                        <td><?= $sm['url'] ?></td>
+                                        <td><i class="<?= $sm['icon'] ?>"></i> = <?= $sm['icon'] ?></td>
+                                        <td><?= $sm['is_active'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('menu/edit_submenu/' . $sm['id']) ?>" class="btn btn-success">edit</a>
+                                            <a href="#" data-toggle="modal" data-target="#deleteModal<?= $sm['id']; ?>" class="btn btn-danger">Delete</a>
+                                            </a>
+                                            <div class="modal fade" id="deleteModal<?= $sm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete?</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">Select "Delete" below if you are sure to delete submenu: <b><?= $sm['id'] . ' | ' . $sm['title'] ?></b>.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                            <a class="btn btn-danger" href="<?= base_url('menu/delete_submenu/' . $sm['id']); ?>">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
@@ -66,7 +103,7 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- Modal -->
+<!-- Add Modal submenu -->
 <div class="modal fade" id="newSubMenuModal" tabindex="-1" role="dialog" aria-labelledby="newSubMenuModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -113,3 +150,4 @@
         </div>
     </div>
 </div>
+

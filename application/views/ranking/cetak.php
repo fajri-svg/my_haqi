@@ -16,21 +16,18 @@ echo "</pre>";
 
         ?> -->
 
-<title>Laporan Data</title>
+<title>Laporan Ranking Data Karyawan Terbaik</title>
 
 <body onLoad="javascript:window:print()">
     <!-- <?php include "config/database.php"; ?> -->
-    <style type="text/css"></style>
-
-    <div style="width:80%;">
-
+    <div style="width:100%;">
         <h2 align="center">Laporan Hasil Perhitungan <br>
             SPK TOPSIS</h2>
 
-        <hr style="border-top:2px solid #333;" width="80%">
+        <hr style="border-top:2px solid #333;" width="100%">
     </div>
 
-    <table id='theList' border=1 width='80%' align="center">
+    <table id='theList' border=1 width='100%' align="center">
         <thead>
             <tr>
                 <th width="3%" bgcolor="#CCCCCC">Nomor</th>
@@ -115,15 +112,16 @@ echo "</pre>";
             $sql3 = $this->db->query("SELECT * FROM nilai_preferensi  ORDER BY nilai DESC")->result_array();
             foreach ($sql3 as $data3) {
                 echo "<tr>
-		<td>" . $i . "</td>
-		<td>{$data3['name']}</td>
-		<td>{$data3['nilai']}</td>
-		</tr>";
+                    <td>" . $i . "</td>
+                    <td>{$data3['name']}</td>
+                    <td>{$data3['nilai']}</td>
+                    </tr>";
 
                 $i++;
             }
 
             //kosongkan tabel nilai preferensi
+            //coba ubah dengan replace/update
             $this->db->truncate("nilai_preferensi");
 
             echo "</tr>";
@@ -135,7 +133,7 @@ echo "</pre>";
     <br>
     <br>
     <br>
-    <table border="0" width='80%' align="center">
+    <table border="0" width='100%' align="center">
         <tr>
             <td colspan="3" align="right">Bandung, <?php echo date('d-M-Y'); ?></td>
         </tr>

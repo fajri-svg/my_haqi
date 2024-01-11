@@ -10,11 +10,16 @@ class Ranking extends CI_Controller
         $this->load->model('NilaiMatrik_model');
         $this->load->model('BobotTernormalisasi_model');
         $this->load->model('MatrikIdeal_model');
+        $this->load->model('Submenu_model');
+        $this->load->library('session');
     }
 
     public function index()
     {
-        $data['title'] = 'Ranking';
+        $id_submenu = 16;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -26,8 +31,17 @@ class Ranking extends CI_Controller
 
     public function perhitungan()
     {
-        $data['title'] = 'Perhitungan';
+        $id_submenu = 5;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id_user = $this->session->userdata('id_user');
+
+        // Mengirimkan id_user ke view
+        $data['id_user'] = $id_user;
+        // print_r($data);
+        // die;
 
         $data['kriteria'] = $this->NilaiMatrik_model->getKriteria();
         $data['alternatif'] = $this->NilaiMatrik_model->getAlternatif();
@@ -38,7 +52,7 @@ class Ranking extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('ranking/perhitungan', $data);
+        $this->load->view('ranking/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -46,7 +60,7 @@ class Ranking extends CI_Controller
     {
         if ($this->input->post('simpan')) {
 
-            $data['id_user'] = $this->input->post('id_alt');
+            $data['id_user'] = $this->input->post('id_user');
             // var_dump($data);
             // die;
             $data['nilai_matrik'] = [];
@@ -70,7 +84,7 @@ class Ranking extends CI_Controller
                 // Berhasil disimpan
                 $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert">Data kriteria user updated!</div>');
-                redirect('ranking/perhitungan');
+                redirect('ranking/index');
             } else {
                 // Gagal disimpan
                 echo 'Gagal menyimpan data!';
@@ -80,11 +94,17 @@ class Ranking extends CI_Controller
 
     public function nilaiMatrik()
     {
-        $data['title'] = 'Nilai Matrik';
+        $id_submenu = 6;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['kriteria'] = $this->NilaiMatrik_model->getKriteria();
         $data['alternatif'] = $this->NilaiMatrik_model->getAlternatif();
+        // $data['order'] = $this->Alternatif_model->joinOrder();
+        // var_dump($data);
+        // die;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -95,7 +115,17 @@ class Ranking extends CI_Controller
 
     public function nilaiMatrikTernormalisasi()
     {
-        $data['title'] = 'Nilai Matrik Ternormalisasi';
+        $id_submenu = 7;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+        $id_submenu = 13;
+        $title1 = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+        $data['title1'] = 'Matrik Ideal Positif (A<sup>+</sup>)';
+        $data['title2'] = 'Matrik Ideal Negatif (A<sup>-</sup>)';
+        $data['title3'] = 'Jarak Solusi Ideal Positif (D<sup>+</sup>)';
+        $data['title4'] = 'Jarak Solusi Ideal Negatif (D<sup>-</sup>)';
+
+        $data['title'] = $title;
+        $data['title01'] = $title1;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['kriteria'] = $this->NilaiMatrik_model->getKriteria();
@@ -111,7 +141,10 @@ class Ranking extends CI_Controller
 
     public function nilaiBobotTernormalisasi()
     {
-        $data['title'] = 'Nilai Bobot Ternormalisasi';
+        $id_submenu = 13;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['kriteria'] = $this->BobotTernormalisasi_model->getKriteria();
@@ -127,7 +160,10 @@ class Ranking extends CI_Controller
 
     public function matrikIdeal()
     {
-        $data['title'] = 'Matrik Ideal Positif/Negatif';
+        $id_submenu = 14;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['title1'] = 'Matrik Ideal Positif (A<sup>+</sup>)';
         $data['title2'] = 'Matrik Ideal Negatif (A<sup>-</sup>)';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -144,7 +180,10 @@ class Ranking extends CI_Controller
 
     public function jarakSolusi()
     {
-        $data['title'] = 'Jarak Ideal Positif/Negatif';
+        $id_submenu = 15;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
         $data['title1'] = 'Jarak Solusi Ideal Positif (D<sup>+</sup>)';
         $data['title2'] = 'Jarak Solusi Ideal Negatif (D<sup>-</sup>)';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -161,7 +200,12 @@ class Ranking extends CI_Controller
 
     public function hasilRanking()
     {
-        $data['title'] = 'Ranking';
+        $id_submenu = 16;
+        $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
+
+        $data['title'] = $title;
+        $data['title1'] = 'Jarak Solusi Ideal Positif (D<sup>+</sup>)';
+        $data['title2'] = 'Jarak Solusi Ideal Negatif (D<sup>-</sup>)';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['kriteria'] = $this->MatrikIdeal_model->getKriteria();
@@ -171,12 +215,11 @@ class Ranking extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        if (!$this->session->has_userdata('ymax')) {
+            $this->load->view('ranking/jarakSolusi');
+        }
         $this->load->view('ranking/hasilRanking', $data);
         $this->load->view('templates/footer');
-
-        if (!$this->session->has_userdata('ymax')) {
-            $this->load->view('jarakSolusi'); 
-        }
     }
 
     public function cetak()
@@ -194,10 +237,22 @@ class Ranking extends CI_Controller
         $this->load->view('ranking/cetak', $data);
         // $this->load->view('templates/footer');
 
+        // echo "<i>cek sessionn dplus</i>";
+        // echo "<pre>";
+        // print_r($this->session->userdata('dplus'));
+        // echo "</pre>";
+
+        // echo "<i>cek sessionn dmin</i>";
+        // echo "<pre>";
+        // print_r($this->session->userdata('dmin'));
+        // echo "</pre>";
+
+        // print_r($this->session->all_userdata());
+
         if (!$this->session->has_userdata('ymax')) {
-            $this->load->view('jarakSolusi'); 
+            // Assuming 'jarak_solusi.php' contains functions/methods you want to include
+            $this->load->helper('path');
+            include(APPPATH . 'path/to/ranking/nilaiMatrikTernormalisasi.php');
         }
     }
-
-
 }

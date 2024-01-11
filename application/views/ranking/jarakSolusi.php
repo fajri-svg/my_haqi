@@ -19,7 +19,7 @@
         <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
             For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
-        <!-- tabel negatif-positif -->
+        <!-- tabel jarak-solusi-positif -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= $title1 ?></h6>
@@ -184,7 +184,7 @@
             </div>
         </div>
 
-        <!-- tabel positif-negatif -->
+        <!-- tabel jarak-solusi-negatif -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><?= $title2 ?></h6>
@@ -351,7 +351,6 @@
                                     //	echo $mins." - ";
                                     $final = sqrt($jarakp = $jarakp + pow($value - $mins, 2));
                                     //	echo $jarakp." || ";
-
                                 }
 
                                 echo "<tr>
@@ -373,8 +372,6 @@
                             }
 
                             echo "</tr>";
-
-
                             ?>
                         </tbody>
                     </table>
@@ -387,5 +384,5 @@
 </div>
 <!-- /.container-fluid -->
 
-</div>
+<!-- </div> -->
 <!-- End of Main Content -->

@@ -116,9 +116,9 @@
                                 $nilai = round($nilaid, 4);
 
                                 //simpan ke tabel nilai preferensi
-                                $nm_alternatif = $nm['name'];
+                                $nm_user = $nm['name'];
 
-                                $sql2 = $this->db->query("INSERT INTO nilai_preferensi (name, nilai) VALUES ('$nm_alternatif', '$nilai')");
+                                $sql2 = $this->db->query("INSERT INTO nilai_preferensi (name, nilai) VALUES ('$nm_user', '$nilai')");
 
                                 /*
                                 echo "INSERT INTO nilai_preferensi (name, nilai) VALUES ('$nm_alternatif', '$nilai')";

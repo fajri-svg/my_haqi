@@ -54,6 +54,9 @@
                                 $nilai_matrik = $this->NilaiMatrik_model->getNilaiMatriks($idalt);
 
                                 foreach ($nilai_matrik as $dn) {
+                                    if ($dn ) {
+                                        # code...
+                                    }
                                     echo "<td align='center'>{$dn['nilai']}</td>";
                                 }
                                 echo "</tr>";
