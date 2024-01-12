@@ -84,8 +84,8 @@
                                     <td><?= $d['poin10']; ?></td>
                                     <td><?= $d['sifat']; ?></td>
                                     <td>
-                                        <a href="<?= base_url('data/ubahKriteria/' . $d['id_kriteria']); ?>" class="badge badge-success">Ubah</a>
-                                        <a href="<?= base_url('data/deleteKriteria/' . $d['id_kriteria']); ?>" class="badge badge-danger">Hapus</a>
+                                        <a href="<?= base_url('data/ubahKriteria/' . $d['id_kriteria']); ?>" class="btn btn-success">Edit</a>
+                                        <a href="<?= base_url('data/deleteKriteria/' . $d['id_kriteria']); ?>" class="btn btn-danger">Hapus</a>
                                         <!-- Delete Modal-->
                                         <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
