@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Ranking extends CI_Controller
 {
     public function __construct()
@@ -12,8 +17,10 @@ class Ranking extends CI_Controller
         $this->load->model('MatrikIdeal_model');
         $this->load->model('Submenu_model');
         $this->load->library('session');
+        // $this->load->library('PHPExcel');
     }
 
+    // hasilRanking
     public function index()
     {
         $id_submenu = 16;
@@ -25,11 +32,12 @@ class Ranking extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('ranking/index', $data);
+        $this->load->view('ranking/hasilRanking', $data);
         $this->load->view('templates/footer');
     }
 
-    public function perhitungan()
+    //input nilai
+    public function inputNilai()
     {
         $id_submenu = 5;
         $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
@@ -84,7 +92,7 @@ class Ranking extends CI_Controller
                 // Berhasil disimpan
                 $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert">Data kriteria user updated!</div>');
-                redirect('ranking/index');
+                redirect('ranking/inputNilai');
             } else {
                 // Gagal disimpan
                 echo 'Gagal menyimpan data!';
@@ -254,5 +262,68 @@ class Ranking extends CI_Controller
             $this->load->helper('path');
             include(APPPATH . 'path/to/ranking/nilaiMatrikTernormalisasi.php');
         }
+    }
+
+    public function exportToExcel()
+    {
+        @session_start();
+        $this->load->database();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set judul spreadsheet
+        $sheet->setCellValue('A1', 'Nomor');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Nilai'); // Ubah judul kolom
+
+        // Siapkan array untuk menyimpan data sementara
+        $data = [];
+
+        // Isi data ke dalam array
+        foreach ($_SESSION['dplus'] as $key => $dxmin) {
+            $jarakm = $_SESSION['dmin'][$key];
+            $id_alt = $_SESSION['id_alt'][$key];
+
+            $nama = $this->db->query("SELECT * FROM user WHERE id_user='$id_alt'")->row_array();
+            $nm = $nama['name'];
+
+            $nilaiPre = $dxmin + $jarakm;
+            $nilaid = $jarakm / $nilaiPre;
+            $nilai = round($nilaid, 4);
+
+            // Tambahkan data ke array
+            $data[] = [
+                'nama' => $nm,
+                'nilai' => $nilai
+            ];
+        }
+
+        // Urutkan data berdasarkan nilai dari yang terbesar
+        usort($data, function ($a, $b) {
+            return $b['nilai'] <=> $a['nilai'];
+        });
+
+        // Isi data ke dalam spreadsheet
+        $i = 2;
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $i, $i - 1);
+            $sheet->setCellValue('B' . $i, $row['nama']);
+            $sheet->setCellValue('C' . $i, $row['nilai']);
+            $i++;
+        }
+
+        // Simpan ke file Excel
+        $exportDate = date('d-m-Y');
+        $filename = 'Laporan_Ranking_Karyawan_' . $exportDate . '.xlsx';
+        $path = FCPATH . '/backup/export/' . $filename;
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($path);
+
+        // Download file
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
     }
 }

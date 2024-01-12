@@ -52,4 +52,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+// $route['export-excel'] = 'ranking/exportToExcel';
 // $route['pages/blank'] = 'pagesController/blankPage';

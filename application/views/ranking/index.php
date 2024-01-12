@@ -19,7 +19,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-2">
-                <h6 class="m-0 font-weight-bold text-primary">Pilih User</h6>
+                <h6 class="m-0 font-weight-bold text-primary"><?= $title ?>
+                </h6>
             </div>
             <div class="card-body">
                 <form action="<?= base_url('ranking/simpan'); ?>" method="POST">
@@ -27,8 +28,6 @@
                     <div class="table-responsive">
 
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-
 
                             <thead>
                                 <tr>
@@ -75,6 +74,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($kriteria as $dalt) : ?>
                                         <tr>
+                                            <!-- ambil id dari session -->
                                             <input type="hidden" name="id_user" value="<?= $id_user; ?>" />
                                             <td><?= $i ?></td>
                                             <td>
