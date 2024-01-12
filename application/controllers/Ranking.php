@@ -314,7 +314,8 @@ class Ranking extends CI_Controller
         }
 
         // Simpan ke file Excel
-        $exportDate = date('d-m-Y');
+        date_default_timezone_set('Asia/Jakarta');
+        $exportDate = date('d-m-Y (h-i-s A)');
         $filename = 'Laporan_Ranking_Karyawan_' . $exportDate . '.xlsx';
         $path = FCPATH . '/backup/export/' . $filename;
         $writer = new Xlsx($spreadsheet);

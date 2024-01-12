@@ -66,6 +66,8 @@ class Admin extends CI_Controller
             $languagePercentages[$extension] = round($percentage, 2);
         }
 
+        // print_r($languagePercentages);
+        // die;
         return $languagePercentages;
     }
 
