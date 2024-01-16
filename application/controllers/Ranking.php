@@ -125,15 +125,13 @@ class Ranking extends CI_Controller
     {
         $id_submenu = 7;
         $title = $this->Submenu_model->getSubmenuTitleById($id_submenu);
-        $id_submenu = 13;
-        $title1 = $this->Submenu_model->getSubmenuTitleById($id_submenu);
         $data['title1'] = 'Matrik Ideal Positif (A<sup>+</sup>)';
         $data['title2'] = 'Matrik Ideal Negatif (A<sup>-</sup>)';
         $data['title3'] = 'Jarak Solusi Ideal Positif (D<sup>+</sup>)';
         $data['title4'] = 'Jarak Solusi Ideal Negatif (D<sup>-</sup>)';
+        $data['title5'] = 'Nilai Bobot Ternormalisasi';
 
         $data['title'] = $title;
-        $data['title01'] = $title1;
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['kriteria'] = $this->NilaiMatrik_model->getKriteria();

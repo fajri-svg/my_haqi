@@ -20,20 +20,19 @@
                     <div class="col mr-2">
                         <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
 
-                            <?php date_default_timezone_set('Asia/Jakarta');
-
-                            $Hour = date('G');
+                            <?php $Hour = date('G');
 
                             if ($Hour >= 00 && $Hour <= 11) {
-                                echo "Selamat Pagi, " . $user['name'] . "!" . "<br> $current_time";
+                                echo "Selamat Pagi, " . $user['name'] . "!";
                             } else if ($Hour >= 12 && $Hour <= 15) {
-                                echo "Selamat Siang, " . $user['name'] . "!" . "<br> $current_time";
+                                echo "Selamat Siang, " . $user['name'] . "!";
                             } else if ($Hour >= 15 && $Hour <= 18) {
-                                echo "Selamat Sore, " . $user['name'] . "!" . "<br> $current_time";
+                                echo "Selamat Sore, " . $user['name'] . "!";
                             } else if ($Hour >= 19 || $Hour <= 01) {
-                                echo "Selamat Malam, " . $user['name'] . "!" . "<br> $current_time";
+                                echo "Selamat Malam, " . $user['name'] . "!";
                             }
                             ?>
+                            <br> <span id="time"><?php echo $current_time; ?></span>
                         </div>
                         <div class="mb-0 font-weight-bold text-gray-800">
                             You Enter <b>Start to Lead</b> Area, Prepare yourself to <b>Leading Self, Leading Team, & Leading Business</b>
@@ -72,7 +71,7 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Motto</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
                 </div>
                 <div class="card-body">
                     <div class="text-center">

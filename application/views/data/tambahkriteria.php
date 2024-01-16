@@ -39,30 +39,30 @@
                             <!-- Isi tabel -->
                             <tbody>
 
-                                    <tr>
-                                        <td><input type="text" name="id_kriteria" class="form-control" value="<?= $IDbaru; ?>" readonly></td>
-                                        <td><input type="text" name="nama_kriteria" class="form-control" placeholder="Nama Kriteria"></td>
-                                        <td><input type="number" step="any" name="bobot" class="form-control" placeholder="Bobot"></td>
-                                        <td><input type="number" step="any" name="poin1" class="form-control" placeholder="Poin 1"></td>
-                                        <td><input type="number" step="any" name="poin2" class="form-control" placeholder="Poin 2"></td>
-                                        <td><input type="number" step="any" name="poin3" class="form-control" placeholder="Poin 3"></td>
-                                        <td><input type="number" step="any" name="poin4" class="form-control" placeholder="Poin 4"></td>
-                                        <td><input type="number" step="any" name="poin5" class="form-control" placeholder="Poin 5"></td>
-                                        <td><input type="number" step="any" name="poin6" class="form-control" placeholder="Poin 6"></td>
-                                        <td><input type="number" step="any" name="poin7" class="form-control" placeholder="Poin 7"></td>
-                                        <td><input type="number" step="any" name="poin8" class="form-control" placeholder="Poin 8"></td>
-                                        <td><input type="number" step="any" name="poin9" class="form-control" placeholder="Poin 9"></td>
-                                        <td><input type="number" step="any" name="poin10" class="form-control" placeholder="Poin 10"></td>
-                                        <td> <select name="sifat" class="form-control">
-                                                <option value="benefit">Benefit</option>
-                                                <option value="cost">Cost</option>
-                                            </select></td>
-                                        <td>
-                                            <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
-                                            <!-- <a href="" class="badge badge-success">edit</a>
+                                <tr>
+                                    <td><input type="text" name="id_kriteria" class="form-control" value="<?= $IDbaru; ?>" readonly></td>
+                                    <td><input type="text" name="nama_kriteria" class="form-control" placeholder="Nama Kriteria"></td>
+                                    <td><input type="number" step="any" name="bobot" class="form-control" placeholder="Bobot"></td>
+                                    <td><input type="number" step="any" name="poin1" class="form-control" value="1" placeholder="Poin 1"></td>
+                                    <td><input type="number" step="any" name="poin2" class="form-control" value="2" placeholder="Poin 2"></td>
+                                    <td><input type="number" step="any" name="poin3" class="form-control" value="3" placeholder="Poin 3"></td>
+                                    <td><input type="number" step="any" name="poin4" class="form-control" value="4" placeholder="Poin 4"></td>
+                                    <td><input type="number" step="any" name="poin5" class="form-control" value="5" placeholder="Poin 5"></td>
+                                    <td><input type="number" step="any" name="poin6" class="form-control" value="6" placeholder="Poin 6"></td>
+                                    <td><input type="number" step="any" name="poin7" class="form-control" value="7" placeholder="Poin 7"></td>
+                                    <td><input type="number" step="any" name="poin8" class="form-control" value="8" placeholder="Poin 8"></td>
+                                    <td><input type="number" step="any" name="poin9" class="form-control" value="9" placeholder="Poin 9"></td>
+                                    <td><input type="number" step="any" name="poin10" class="form-control" value="10" placeholder="Poin 10"></td>
+                                    <td> <select name="sifat" class="form-control">
+                                            <option value="benefit">Benefit</option>
+                                            <option value="cost">Cost</option>
+                                        </select></td>
+                                    <td>
+                                        <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+                                        <!-- <a href="" class="badge badge-success">edit</a>
                                         <a href="" class="badge badge-danger">delete</a> -->
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
 
                             </tbody>
                         </table>

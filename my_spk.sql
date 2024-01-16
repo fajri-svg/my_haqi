@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jan 2024 pada 03.31
+-- Waktu pembuatan: 16 Jan 2024 pada 08.05
 -- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Versi PHP: 8.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -111,11 +111,16 @@ INSERT INTO `nilai_matrik` (`id_matrik`, `id_user`, `id_kriteria`, `nilai`) VALU
 (286, 0, '3', 5),
 (287, 0, '4', 5),
 (288, 0, '5', 10),
-(299, 10, '1', 10),
-(300, 10, '2', 5),
-(301, 10, '3', 5),
-(302, 10, '4', 5),
-(303, 10, '5', 10);
+(354, 10, '1', 10),
+(355, 10, '2', 5),
+(356, 10, '3', 5),
+(357, 10, '4', 5),
+(358, 10, '5', 10),
+(359, 13, '1', 5),
+(360, 13, '2', 5),
+(361, 13, '3', 5),
+(362, 13, '4', 5),
+(363, 13, '5', 5);
 
 -- --------------------------------------------------------
 
@@ -151,8 +156,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
 (3, 'Operator', 'muhfajriaushaf@gmail.com', 'no_bg.png', '$2y$10$g60AMNy3VZnK.NmkS0bNJ.UTMMfcZ6Q5o3adO6pSEUPS5z0wsZdHm', 3, 1, 1698164001),
-(4, 'fajri', 'fajri@gmail.com', 'default.jpg', '$2y$10$A.ZlukSC4xeV26bMut7Q0OIxv/Y1a1da7iE8LETke8Rx1lPSs2TK2', 2, 0, 1698562386),
-(10, 'Jefri', 'mfajriaushaf@gmail.com', 'jw1.jpg', '$2y$10$gCWZt/PrnbYU4NqKek3IuuI7r3SqMeCuWUWUYa1OaPVO20LoC/tu2', 1, 1, 1702996983);
+(4, 'fajri', 'fajri@gmail.com', 'default.jpg', '$2y$10$A.ZlukSC4xeV26bMut7Q0OIxv/Y1a1da7iE8LETke8Rx1lPSs2TK2', 3, 0, 1698562386),
+(10, 'Jefri', 'mfajriaushaf@gmail.com', 'jw1.jpg', '$2y$10$gCWZt/PrnbYU4NqKek3IuuI7r3SqMeCuWUWUYa1OaPVO20LoC/tu2', 1, 1, 1702996983),
+(13, 'aushaf', 'mfajriaugust@gmail.com', 'default.jpg', '$2y$10$gw0wyacT/fSXV7Sm73r3Oez.SfPXI6oLkD9fknrXvt7RJpLItHuQm', 2, 1, 1704966819);
 
 -- --------------------------------------------------------
 
@@ -269,7 +275,7 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (2, 2, 'My Profile', 'user', 'fas fa-fw fa-user', 1),
 (3, 4, 'Data Kriteria', 'data', 'fas fa-fw fa-table', 1),
 (4, 4, 'Data User', 'data/datauser', 'fas fa-fw fa-table', 1),
-(5, 5, 'Input Nilai', 'ranking/perhitungan', 'fas fa-fw fa-calculator', 1),
+(5, 5, 'Input Nilai', 'ranking/inputNilai', 'fas fa-fw fa-calculator', 1),
 (6, 5, 'Nilai Matrik', 'ranking/nilaiMatrik', 'fas fa-fw fa-calculator', 1),
 (7, 5, 'Perhitungan', 'ranking/nilaiMatrikTernormalisasi', 'fas fa-fw fa-calculator', 1),
 (8, 2, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 1),
@@ -360,13 +366,13 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `nilai_matrik`
 --
 ALTER TABLE `nilai_matrik`
-  MODIFY `id_matrik` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
+  MODIFY `id_matrik` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -396,7 +402,7 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,10 +20,27 @@
 
     <!-- Custom styles for tables page -->
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12; // jam '0' harus '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
+            document.getElementById('time').innerHTML = strTime;
+            setTimeout(updateTime, 1000);
+        }
+    </script>
 
 </head>
 
-<body id=" page-top">
+<body id=" page-top" onload="updateTime()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
